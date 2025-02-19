@@ -60,6 +60,11 @@ class Company {
         this.employees.forEach(employee => 
             console.log(employee.getDetails()));
         }
+
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, employee) => 
+            total + employee.calculateAnnualSalary(), 0);
+        }
     }
         // Test cases
 const company = new Company("TechCorp");
@@ -69,3 +74,7 @@ company.listEmployees();
 // Expected output:
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
+
+console.log(company.calculateTotalPayroll()); 
+// Expected output: 172800 (assuming emp1 and mgr1 salaries)
+
