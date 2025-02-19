@@ -60,7 +60,16 @@ class Company {
         this.employees.forEach(employee => 
             console.log(employee.getDetails()));
         }
+    // Task 5 - Promoting an employee to manager
+    promoteToManager(employee, teamSize) {
+        const promotedManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+        const index = this.employees.indexOf(employee);
+        if (index !== -1) {
+            this.employees[index] = promotedManager
+        }
+    }
 
+// Task 4 - Payroll calculation
     calculateTotalPayroll() {
         return this.employees.reduce((total, employee) => 
             total + employee.calculateAnnualSalary(), 0);
@@ -78,3 +87,6 @@ company.listEmployees();
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 172800 (assuming emp1 and mgr1 salaries)
 
+company.promoteToManager(emp1, 3);
+company.listEmployees();
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
